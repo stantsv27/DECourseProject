@@ -13,3 +13,4 @@ def save_to_disk(json_content: List[Dict[str, Any]], path: str) -> None:
     """
     with open(path, 'w') as outfile:
         outfile.write(json.dumps(json_content))
+    print('File created')

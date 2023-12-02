@@ -21,8 +21,6 @@ def get_sales(date: str) -> List[Dict[str, Any]]:
 
     while True:
 
-        print('page: ', counter)
-
         try:
             response = requests.get(
                     url=URL,
@@ -40,6 +38,5 @@ def get_sales(date: str) -> List[Dict[str, Any]]:
         except ValueError:
             print('Got ValueError')
             break
-    print('The End of Script')
 
     return res
