@@ -1,0 +1,9 @@
+/venv
+.idea/
+lesson_02/.env
+__pycache__/
+.DS_Store
+**/__pycache__/
+lesson_02/test.py
+**/test.py
+**/.env
