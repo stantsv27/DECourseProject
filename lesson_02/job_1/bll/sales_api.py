@@ -28,6 +28,6 @@ def save_sales_to_local_disk(date: str, raw_dir: str) -> None:
             os.remove(os.path.join(raw_dir, filename))
         print('files removed')
 
-    file_path = os.path.join(raw_dir, f'{date}.json')
+    file_path = os.path.join(raw_dir, f'sales_{date}.json')
 
     local_disk.save_to_disk(json_content, file_path)

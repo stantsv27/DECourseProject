@@ -46,5 +46,5 @@ def run_job2():
 
 if __name__ == '__main__':
     run_job1()
-    # time.sleep(3)
-    # run_job2()
+    time.sleep(3)
+    run_job2()

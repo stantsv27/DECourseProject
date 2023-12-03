@@ -5,8 +5,8 @@ and trigger business logic layer
 from flask import Flask, request
 from flask import typing as flask_typing
 from environs import Env
-# from lesson_02.job_1.bll.sales_api import save_sales_to_local_disk
-from bll.sales_api import save_sales_to_local_disk
+import os
+from bll.file_storage_jobs import sales_json_to_avro
 
 env = Env()
 env.read_env()
@@ -27,17 +27,17 @@ def main() -> flask_typing.ResponseReturnValue:
 
     Proposed POST body in JSON:
     {
-      "date: "2022-08-09",
+      "stg_dir: "/path/to/my_dir/stg/sales/2022-08-09",
       "raw_dir": "/path/to/my_dir/raw/sales/2022-08-09"
     }
     """
     input_data: dict = request.json
-    date = input_data.get('date')
+    stg_dir = input_data.get('stg_dir')
     raw_dir = input_data.get('raw_dir')
 
-    if not date:
+    if not stg_dir:
         return {
-            "message": "date parameter missed",
+            "message": "stg_dir parameter missed",
         }, 400
 
     if not raw_dir:
@@ -45,12 +45,17 @@ def main() -> flask_typing.ResponseReturnValue:
             "message": "raw_dir parameter missed",
         }, 400
 
-    save_sales_to_local_disk(date=date, raw_dir=raw_dir)
+    if not os.path.exists(raw_dir):
+        return {
+            "message": "directory raw_dir does not exists",
+        }, 400
+
+    sales_json_to_avro(stg_dir=stg_dir, raw_dir=raw_dir)
 
     return {
-               "message": "Data retrieved successfully from API",
+               "message": "Data successfully recorded to stg_dir",
            }, 201
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host="localhost", port=8081)
+    app.run(debug=True, host="localhost", port=8082)
