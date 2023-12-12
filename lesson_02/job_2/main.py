@@ -6,7 +6,7 @@ from flask import Flask, request
 from flask import typing as flask_typing
 from environs import Env
 import os
-from bll.file_storage_jobs import sales_json_to_avro
+from lesson_02.job_2.bll.file_storage_jobs import sales_json_to_avro
 
 env = Env()
 env.read_env()

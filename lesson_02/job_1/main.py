@@ -5,8 +5,7 @@ and trigger business logic layer
 from flask import Flask, request
 from flask import typing as flask_typing
 from environs import Env
-# from lesson_02.job_1.bll.sales_api import save_sales_to_local_disk
-from bll.sales_api import save_sales_to_local_disk
+from lesson_02.job_1.bll.sales_api import save_sales_to_local_disk
 
 env = Env()
 env.read_env()

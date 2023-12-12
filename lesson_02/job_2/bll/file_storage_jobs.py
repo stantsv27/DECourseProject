@@ -1,6 +1,5 @@
 from typing import List, Dict, Any
-from dal.local_disk import read_json, save_to_disk_as_avro
-# from lesson_02.job_2.dal.local_disk import read_json, save_to_disk_as_avro
+from lesson_02.job_2.dal.local_disk import read_json, save_to_disk_as_avro
 import os
 
 
