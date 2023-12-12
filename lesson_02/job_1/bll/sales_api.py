@@ -1,5 +1,3 @@
-# from lesson_02.job_1.dal import local_disk
-# from lesson_02.job_1.dal import sales_api
 from lesson_02.job_1.dal import local_disk
 from lesson_02.job_1.dal import sales_api
 import os
