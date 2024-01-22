@@ -10,4 +10,4 @@ lesson_02/test.py
 **/.env
 lesson_02/file_storage
 lesson_07/airflow/
-!lesson_07/airflow/dags
+!lesson_07/airflow/dags/**
