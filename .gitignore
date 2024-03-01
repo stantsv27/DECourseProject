@@ -1,5 +1,6 @@
 /venv
 /venv_airflow
+/venv_spark
 .idea/
 lesson_02/.env
 __pycache__/
@@ -11,3 +12,5 @@ lesson_02/test.py
 lesson_02/file_storage
 lesson_07/airflow/
 !lesson_07/airflow/dags/**
+lesson_14/data
+lesson_14/.ipynb_checkpoints
