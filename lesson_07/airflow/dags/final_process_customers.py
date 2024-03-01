@@ -1,7 +1,7 @@
 from airflow import DAG
 from airflow.operators.dummy_operator import DummyOperator
 from airflow.providers.google.cloud.transfers.gcs_to_bigquery import GCSToBigQueryOperator
-from airflow.providers.google.cloud.operators.bigquery import BigQueryInsertJobOperator
+from airflow.providers.google.cloud.operators.bigquery import BigQueryExecuteQueryOperator
 from datetime import datetime
 
 
@@ -34,22 +34,12 @@ with DAG(
         gcp_conn_id='gc-de'
     )
 
-    transfer_to_silver = BigQueryInsertJobOperator(
+    transfer_to_silver = BigQueryExecuteQueryOperator(
         task_id='transfer_to_silver',
         dag=dag,
-        configuration={
-            "query": {
-                "query": "{% include 'sql/customers_to_silver.sql' %}",
-                "useLegacySql": False,
-                "writeDisposition": "WRITE_TRUNCATE",
-                "destinationTable": {
-                    "projectId": 'de-07-stas-tsvietkov',
-                    "datasetId": 'silver',
-                    "tableId": 'customers'
-                }
-            }
-        },
-        gcp_conn_id='gc-de'
+        sql="{% include 'sql/merge_users_to_silver.sql' %}",
+        gcp_conn_id='gc-de',
+        use_legacy_sql=False
     )
 
     end = DummyOperator(task_id='end')
